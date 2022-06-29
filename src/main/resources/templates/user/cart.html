@@ -57,7 +57,7 @@
                                 </td>
                                 <td th:text="${#numbers.formatCurrency(cartBookDTO.bookDTO.price * (100 - cartBookDTO.bookDTO.discount) * cartBookDTO.quantity / 100)}"></td>
                                 <td>
-                                    <button class="delete-book-form-cart btn-primary" th:value="${cartBookDTO.bookDTO.id}" type="button"><i class="fa-solid fa-trash-can"></i>Xóa</button>
+                                    <button class="delete-book-form-cart btn btn-primary" th:value="${cartBookDTO.bookDTO.id}" type="button"><i class="fa-solid fa-trash-can"></i>Xóa</button>
                                 </td>
                             </tr>
                         </th:block>
@@ -129,7 +129,6 @@
         function btnClickDelete() {
             $(".delete-book-form-cart").click(function (e) {
                 let bookId = $(this).val();
-                console.log(bookId)
                 let nal = {
                     'bookDTO': {
                         'id': bookId
@@ -169,7 +168,6 @@
         function btnMinusBookClick() {
             $('.btn-minus').click(function () {
                 let bookId = $(this).val();
-                console.log(bookId)
                 let nal = {
                     'bookDTO': {
                         'id': bookId
@@ -204,7 +202,6 @@
         function btnIncrementBookClick() {
             $('.btn-sum').click(function () {
                 let bookId = $(this).val();
-                console.log(bookId)
                 let nal = {
                     'bookDTO': {
                         'id': bookId
