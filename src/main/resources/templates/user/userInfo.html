@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Thông tin cá nhân</title>
+</head>
+<body>
+    <!-- Start header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- header end -->
+
+    <div class="content w-100 pt-4">
+        <div class="container bg-white">
+            <div class="row">
+                <div class="col-3 border-right" style="min-height: 300px">
+                    <div th:insert="~{common/sidebar :: .navbar-user}"></div>
+                </div>
+                <div class="col-9">
+                    <div class="col-12 title bg-white text-center">
+                        <h3 class="text-center text-primary">Thông tin cá nhân</h3>
+                        <div class="row pt-3">
+                            <div class="col-12">
+                                <table class="table border m-0">
+                                    <tr>
+                                        <th class="text-left">Họ tên</th>
+                                        <td th:text="${userDTO.fullName}" class="text-left"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">Email</th>
+                                        <td th:text="${userDTO.email}" class="text-left"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">Địa chỉ</th>
+                                        <td th:text="${userDTO.address}" class="text-left"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">Số điện thoại</th>
+                                        <td th:text="${userDTO.phone}" class="text-left"></td>
+                                    </tr>
+                                </table>
+                                <div class="d-flex justify-content-end pt-3">
+                                    <a th:href="@{/user/info/update}" class="btn btn-primary">Thay đổi thông tin</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  footer -->
+    <div th:insert="~{common/footer :: .footer}"></div>
+    <!-- end footer -->
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Giỏ hàng</title>
+</head>
+
+<body>
+    <!-- Start header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- header end -->
+
+    <div class="content w-100 info-cart">
+        <div class="container-fluid container-lg info-cart-content">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    <span class="d-block">Giỏ hàng</span>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table border-bottom">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Số lượng</th>
+                            <th>Tổng tiền</th>
+                            <th>Loại bỏ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-book-details">
+                        <th:block th:each="cartBookDTO : ${cartBookDTOS}">
+                            <tr>
+                                <td th:text="${cartBookDTO.bookDTO.title}">Harrypotter và hòn đá hội phượng hoàng</td>
+                                <td>
+                                    <img th:src="${cartBookDTO.bookDTO.thumbnail}" th:alt="${cartBookDTO.bookDTO.title}" style="height: 100px;">
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="d-flex justify-content-start">
+                                            <button class="btn-minus text-center border-0" th:value="${cartBookDTO.bookDTO.id}" style="width: 30px; height: 30px;">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <div class="pl-3 pr-3 border bg-light text-center" style="font-size: 16px; min-width: 30px; max-width: 60px" th:text="${cartBookDTO.quantity}">
+                                                1
+                                            </div>
+                                            <button class="btn-sum text-center border-0" th:value="${cartBookDTO.bookDTO.id}" style="width: 30px; height: 30px;">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td th:text="${#numbers.formatCurrency(cartBookDTO.bookDTO.price * (100 - cartBookDTO.bookDTO.discount) * cartBookDTO.quantity / 100)}"></td>
+                                <td>
+                                    <button class="delete-book-form-cart btn-primary" th:value="${cartBookDTO.bookDTO.id}" type="button"><i class="fa-solid fa-trash-can"></i>Xóa</button>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row pt-3 pb-3">
+                <div class="col-12 d-flex flex-column justify-content-around pb-3">
+                    <div class="d-flex justify-content-end pb-3 pr-5">
+                        <span style="font-size: 18px;" class="pl-3 pr-3 font-weight-bold">Thành tiền: </span>
+                        <span id="totalPrice" style="font-size: 18px;" th:text="${#numbers.formatCurrency(totalPrice)}"></span>
+                    </div>
+                    <div class="d-flex justify-content-end pr-5">
+                        <a th:href="@{/thanh-toan}" class="btn btn-check-out">
+                            <i class="fas fa-money-check-alt"></i> Thanh toán
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            btnClickDelete();
+            btnMinusBookClick();
+            btnIncrementBookClick();
+        })
+
+        function render(res) {
+            let form = '';
+            let sumPrice = 0;
+            for (let i = 0; i < res.length; i++) {
+                let obj = res[i];
+                let totalPrice = obj.bookDTO.price * (100 - obj.bookDTO.discount) * obj.quantity / 100
+                sumPrice += totalPrice;
+                form += `
+                        <tr>
+                            <td>${obj.bookDTO.title}</td>
+                            <td>
+                                <img src="${obj.bookDTO.thumbnail}" style="height: 100px;">
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-start">
+                                    <button class="btn-minus text-center border-0" value="${obj.bookDTO.id}" style="width: 30px; height: 30px;">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <div class="pl-3 pr-3 border bg-light text-center" style="font-size: 16px; min-width: 30px; max-width: 60px">
+                                        ${obj.quantity}
+                                    </div>
+                                    <button class="btn-sum text-center border-0" value="${obj.bookDTO.id}" style="width: 30px; height: 30px;">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPrice)}</td>
+                            <td>
+                                <button class="delete-book-form-cart btn btn-primary" value="${obj.bookDTO.id}" type="button">Xóa</button>
+                            </td>
+                        </tr>
+                        `
+            }
+            $("#cart-book-details").empty();
+            $("#cart-book-details").append(form);
+            $("#totalPrice").empty();
+            $("#totalPrice").append(sumPrice);
+        }
+
+        function btnClickDelete() {
+            $(".delete-book-form-cart").click(function (e) {
+                let bookId = $(this).val();
+                console.log(bookId)
+                let nal = {
+                    'bookDTO': {
+                        'id': bookId
+                    }
+                }
+                $.ajax(
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        type: 'POST',
+                        url: '[[ ${#servletContext.getContextPath()} ]]/cart/deleteBook',
+                        data: JSON.stringify(nal),
+                        success: function (res) {
+                            render(res)
+                            Swal.fire(
+                                "Bỏ sách khỏi giỏ hàng",
+                                "Thành công",
+                                "success",
+                                "Tiếp tục!",
+                            )
+                            btnClickDelete();
+                            btnMinusBookClick();
+                            btnIncrementBookClick();
+                        },
+                        error: function (error) {
+                            if(error.status == 403) {
+                                window.location.href ="[[ ${#servletContext.getContextPath()} ]]/login";
+                            }
+                        }
+                    }
+                )
+            })
+        }
+
+        function btnMinusBookClick() {
+            $('.btn-minus').click(function () {
+                let bookId = $(this).val();
+                console.log(bookId)
+                let nal = {
+                    'bookDTO': {
+                        'id': bookId
+                    }
+                }
+                $.ajax(
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        type: 'POST',
+                        url: '[[ ${#servletContext.getContextPath()} ]]/cart/updateBook/minus',
+                        data: JSON.stringify(nal),
+                        success: function (res) {
+                            render(res)
+                            btnClickDelete();
+                            btnMinusBookClick();
+                            btnIncrementBookClick();
+                        },
+                        error: function (error) {
+                            if(error.status == 403) {
+                                window.location.href ="[[ ${#servletContext.getContextPath()} ]]/login";
+                            }
+                            console.log(error)
+                        }
+                    }
+                )
+            })
+        }
+
+        function btnIncrementBookClick() {
+            $('.btn-sum').click(function () {
+                let bookId = $(this).val();
+                console.log(bookId)
+                let nal = {
+                    'bookDTO': {
+                        'id': bookId
+                    }
+                }
+                $.ajax(
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        type: 'POST',
+                        url: '[[ ${#servletContext.getContextPath()} ]]/cart/updateBook/increment',
+                        data: JSON.stringify(nal),
+                        success: function (res) {
+                            render(res)
+                            btnClickDelete();
+                            btnMinusBookClick();
+                            btnIncrementBookClick();
+                        },
+                        error: function (error) {
+                            if(error.status == 403) {
+                                window.location.href ="[[ ${#servletContext.getContextPath()} ]]/login";
+                            }
+                            console.log(error)
+                        }
+                    }
+                )
+            })
+        }
+    </script>
+
+    <!-- footer start -->
+    <div th:insert="~{common/footer :: .footer}"></div>
+    <!-- footer end -->
+</body>
+
+</html>

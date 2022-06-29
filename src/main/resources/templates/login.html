@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Đăng nhập</title>
+</head>
+
+<body>
+    <!-- Start header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- header end -->
+
+    <!-- Content -->
+    <div class="content w-100 pt-3">
+        <div class="container-fluid container-sm container-md container-lg pt-5 pb-5" style="margin-top:5px;background-color: #fff;">
+            <!-- button -->
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-5">
+                    <h2 class="pl-5 pr-5 edit-button">
+                        Đăng nhập
+                    </h2>
+                </div>
+            </div>
+            <!-- form -->
+            <div class="row justify-content-center form-login">
+                <div class="col-sm-12 col-md-8 col-lg-5">
+                    <form th:action="@{/j_spring_security_check}" method="post">
+                        <div class="form-group">
+                            <label>Tài khoản</label>
+                            <input type="text" class="form-control" name="username" placeholder="Nhập tài khoản">
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" name="subLogin" value="Đăng nhập" class="sub-btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer start -->
+    <div th:insert="~{common/footer :: .footer}"></div>
+    <!-- footer end -->
+
+<!--    <script src="/js/bootstrap.min.js"></script>-->
+<!--    <script>-->
+<!--        var login = document.querySelector('.select-login');-->
+<!--        login.onclick = function (e) {-->
+<!--            var btn = document.querySelector('.select-register');-->
+<!--            btn.classList.remove('edit-button');-->
+<!--            e.target.classList.add('edit-button');-->
+<!--            var f1 = document.querySelector('.form-login');-->
+<!--            var f2 = document.querySelector('.form-register');-->
+<!--            f2.classList.add('d-none');-->
+<!--            f1.classList.remove('d-none');-->
+<!--        }-->
+
+<!--        var resgister = document.querySelector('.select-register');-->
+
+<!--        resgister.onclick = function (e) {-->
+<!--            var btn = document.querySelector('.select-login');-->
+<!--            btn.classList.remove('edit-button');-->
+<!--            e.target.classList.add('edit-button');-->
+<!--            var f1 = document.querySelector('.form-login');-->
+<!--            var f2 = document.querySelector('.form-register');-->
+<!--            f1.classList.add('d-none');-->
+<!--            f2.classList.remove('d-none');-->
+<!--        }-->
+<!--    </script>-->
+</body>
+
+</html>

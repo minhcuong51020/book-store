@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{commonAdmin/library :: link}"></th:block>
+    <th:block th:insert="~{commonAdmin/library :: script}"></th:block>
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:insert="~{commonAdmin/header}"></th:block>
+
+    <div class="content-admin">
+        <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+                <th:block th:insert="~{commonAdmin/sidebar}"></th:block>
+                <!-- Content right -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+                    <div class="list-item ml-2 mr-2 mt-2">
+                        <h2 class="title-crud text-center text-primary">Danh sách tác giả</h2>
+                        <div class="table-all table-responsive" style="background-color: #fff;">
+                            <table class="table table-striped mb-0 border-bottom">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên NXB</th>
+                                        <th>Năm thành lập</th>
+                                        <th>Tên Mô tả</th>
+                                        <th>Trạng thái</th>
+                                        <th><i class="fas fa-cog"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="publisher : ${publisherDTOS}">
+                                        <tr>
+                                            <td th:text="${publisherStat.index}"></td>
+                                            <td th:text="${publisher.name}"></td>
+                                            <td th:text="${publisher.yearFounded}"></td>
+                                            <td th:text="${publisher.description}"></td>
+                                            <td th:text="${publisher.isActive}"></td>
+                                            <td>
+                                                <div style="width: 70px;">
+                                                    <a th:href="@{/admin/publisher/update/{id}(id=${publisher.id})}" class="edit-table text-primary">
+                                                        Sửa
+                                                    </a>
+                                                    <a>||</a>
+                                                    <a th:href="@{/admin/publisher/delete/{id}(id=${publisher.id})}" class="delete-table text-primary">
+                                                        Xóa</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- content right end -->
+            </div>
+        </div>
+    </div>
+
+    <th:block th:insert="~{commonAdmin/footer}"></th:block>
+</body>
+
+</html>

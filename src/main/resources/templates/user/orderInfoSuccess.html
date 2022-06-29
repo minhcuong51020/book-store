@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Đơn hàng hoàn thành</title>
+</head>
+<body>
+    <!-- Start header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- header end -->
+
+    <div class="content w-100 pt-4">
+        <div class="container bg-white">
+            <div class="row">
+                <div class="col-3 border-right" style="min-height: 300px">
+                    <div th:insert="~{common/sidebar :: .navbar-user}"></div>
+                </div>
+                <div class="col-9">
+                    <div class="col-12 title bg-white text-center">
+                        <h3 class="text-center text-primary">Đơn hàng hoàn thành</h3>
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                  <th>Hình ảnh</th>
+                                  <th>Ngày</th>
+                                  <th>Tổng tiền</th>
+                                  <th>Chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <th:block th:each="orderDTO : ${orderDTOS}">
+                                    <tr>
+                                        <td>
+                                            <img th:src="${orderDTO.orderDetailsDTOS[0].bookDTO.thumbnail}" width="60px">
+                                        </td>
+                                        <td th:text="${orderDTO.createdAt}"></td>
+                                        <td th:text="${#numbers.formatCurrency(orderDTO.totalPrice)}"></td>
+                                        <td>
+                                            <a th:href="@{/user/order/details/{id}(id = ${orderDTO.id})}">Xem chi tiết</a>
+                                        </td>
+                                    <tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:insert="~{common/footer :: .footer}"></div>
+</body>
+</html>

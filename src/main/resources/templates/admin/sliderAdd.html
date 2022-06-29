@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{commonAdmin/library :: link}"></th:block>
+    <th:block th:insert="~{commonAdmin/library :: script}"></th:block>
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:insert="~{commonAdmin/header}"></th:block>
+
+    <div class="content-admin">
+        <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+                <th:block th:insert="~{commonAdmin/sidebar}"></th:block>
+                <!-- Content right -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+                    <div class="list-item ml-2 mr-2 mt-2">
+                        <h2 class="title-crud text-center text-primary">Thêm sự kiện</h2>
+                        <h4 class="text-success" th:if="${messageSuccess}" th:text="${messageSuccess}"></h4>
+                        <h4 class="text-danger" th:if="${messageFail}" th:text="${messageFail}"></h4>
+                        <div class="table-all table-responsive p-3" style="background-color: #fff;">
+                            <form th:action="@{/admin/slider/add}" th:object="${sliderDTO}" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="name">Tên:</label>
+                                    <input th:field="${sliderDTO.name}" type="text" class="form-control" placeholder="Nhập tên">
+                                </div>
+                                <div class="form-group">
+                                    <label for="img">Hình ảnh:</label>
+                                    <br>
+                                    <input th:field="${sliderDTO.file}" type="file" id="img">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- content right end -->
+            </div>
+        </div>
+    </div>
+
+    <th:block th:insert="~{commonAdmin/footer}"></th:block>
+</body>
+
+</html>

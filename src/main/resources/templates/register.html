@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Đăng nhập</title>
+</head>
+
+<body>
+    <!-- Start header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- header end -->
+
+    <!-- Content -->
+    <div class="content w-100 pt-3">
+        <div class="container-fluid container-sm container-md container-lg pt-5 pb-5" style="margin-top:5px;background-color: #fff;">
+            <!-- button -->
+            <div class="row justify-content-center">
+                <div class="pl-5 pr-5 edit-button">
+                    <h2>Đăng ký</h2>
+                </div>
+            </div>
+            <!-- form -->
+            <div class="row justify-content-center form-register">
+                <div class="col-sm-12 col-md-8 col-lg-5">
+                    <form th:action="@{/register}" method="post" th:object="${userDTO}">
+                        <div class="form-group">
+                            <label>Tài khoản</label>
+                            <input th:field="${userDTO.username}" type="text" class="form-control" placeholder="Nhập tài khoản">
+                            <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:text="#{field.required}"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input th:field="${userDTO.password}" type="password" class="form-control" placeholder="Nhập mật khẩu">
+                            <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:text="#{password.length}"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu</label>
+                            <input th:field="${userDTO.rePassword}" type="password" class="form-control" placeholder="Nhập lại mật khẩu">
+                            <p class="text-danger" th:if="${#fields.hasErrors('rePassword')}" th:text="#{password.valid}"></p>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" name="subRegister" value="Đăng ký" class="sub-btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  content end  -->
+
+    <!-- footer start -->
+    <div th:insert="~{common/footer :: .footer}"></div>
+    <!-- footer end -->
+</body>
+
+</html>

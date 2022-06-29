@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{commonAdmin/library :: link}"></th:block>
+    <th:block th:insert="~{commonAdmin/library :: script}"></th:block>
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:insert="~{commonAdmin/header}"></th:block>
+
+    <div class="content-admin">
+        <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+                <th:block th:insert="~{commonAdmin/sidebar}"></th:block>
+                <!-- Content right -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+                    <div class="list-item ml-2 mr-2 mt-2">
+                        <h2 class="title-crud text-center text-primary">Danh sách nhà cung cấp</h2>
+                        <div class="table-all table-responsive" style="background-color: #fff;">
+                            <table class="table table-striped mb-0 border-bottom">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên danh mục</th>
+                                        <th>Trạng thái</th>
+                                        <th><i class="fas fa-cog"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="category : ${categoryDTOS}">
+                                        <tr>
+                                            <td th:text="${categoryStat.index}"></td>
+                                            <td th:text="${category.name}"></td>
+                                            <td th:text="${category.isActive}"></td>
+                                            <td>
+                                                <div style="width: 70px;">
+                                                    <a th:href="@{/admin/category/update/{id}(id=${category.id})}" class="edit-table text-primary">
+                                                        Sửa
+                                                    </a>
+                                                    <a>||</a>
+                                                    <a th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="delete-table text-primary">
+                                                        Xóa</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- content right end -->
+            </div>
+        </div>
+    </div>
+
+    <th:block th:insert="~{commonAdmin/footer}"></th:block>
+</body>
+
+</html>

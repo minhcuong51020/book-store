@@ -1,0 +1,16 @@
+<ul class="navbar-nav ul-all navbar-user">
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/user/info}">Thông tin cá nhân</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#ordersInfo" data-toggle="collapse" aria-expanded="false">Thông tin đơn hàng</a>
+        <ul class="collapse" id="ordersInfo">
+            <li class="nav-item">
+                <a th:href="@{/user/order/success}" class="nav-link">Đơn hàng hoàn thành</a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/user/order/pending}" class="nav-link">Đơn hàng chờ xử lý</a>
+            </li>
+        </ul>
+    </li>
+</ul>

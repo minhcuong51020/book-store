@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Thanh toán</title>
+</head>
+
+<body>
+    <!-- Start header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- header end -->
+
+    <div class="content w-100 info-checkout">
+        <div class="container-fluid container-lg info-cart-content">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    <span class="d-block">Thông tin nhận hàng</span>
+                </div>
+            </div>
+            <div class="row pt-3 pb-3">
+                <div class="col-lg-12">
+                    <form th:action="@{/checkout}" method="post" th:object="${orderDTO}">
+                        <div class="form-group row">
+                            <label for="fullName" class="col-5 col-sm-2 col-form-label">Tên người nhận</label>
+                            <div class="col-7 col-sm-10">
+                                <input th:value="${userDTO.fullName}" name="fullName" type="text" class="form-control" id="fullName">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phone" class="col-5 col-sm-2 col-form-label">Số điện thoại</label>
+                            <div class="col-7 col-sm-10">
+                                <input th:value="${userDTO.phone}" name="phone" type="text" class="form-control" id="phone">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="address" class="col-5 col-sm-2 col-form-label">Địa chỉ</label>
+                            <div class="col-7 col-sm-10">
+                                <input type="text" th:value="${userDTO.address}" name="address"  class="form-control" id="address">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="totalPrice" class="col-5 col-sm-2 col-form-label">Tổng tiền</label>
+                            <div class="col-7 col-sm-10">
+                                <input type="text" th:value="${totalPrice}" th:readonly="true" name="totalPrice" class="form-control" id="totalPrice">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <input th:disabled="${#lists.size(cartBookDTOS) == 0}" th:classappend="${#lists.size(cartBookDTOS) == 0} ? 'btn-disable' : '' "
+                                   class="checkout-submit" type="submit" name="submit" value="Thanh toán">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid container-lg info-cart-content">
+            <div class="row" >
+                <div class="col-12 title border-bottom" style="background-color: #fff;">
+                    <span class="d-block">Kiểm tra lại đơn hàng</span>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Số lượng</th>
+                            <th>Tổng tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:each="cartBookDTO : ${cartBookDTOS}">
+                            <tr>
+                                <td th:text="${cartBookDTO.bookDTO.title}"></td>
+                                <td>
+                                    <img th:src="${cartBookDTO.bookDTO.thumbnail}" th:alt="${cartBookDTO.bookDTO.title}" style="height: 100px;">
+                                </td>
+                                <td th:text="${cartBookDTO.quantity}"></td>
+                                <td th:text="${#numbers.formatCurrency(cartBookDTO.bookDTO.price * (100 - cartBookDTO.bookDTO.discount) / 100 * cartBookDTO.quantity)}"></td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer start -->
+    <div th:insert="~{common/footer :: .footer}"></div>
+    <!-- footer end -->
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{commonAdmin/library :: link}"></th:block>
+    <th:block th:insert="~{commonAdmin/library :: script}"></th:block>
+    <title>Danh sách sự kiện</title>
+</head>
+
+<body>
+    <th:block th:insert="~{commonAdmin/header}"></th:block>
+
+    <div class="content-admin">
+        <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+                <th:block th:insert="~{commonAdmin/sidebar}"></th:block>
+                <!-- Content right -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+                    <div class="list-item ml-2 mr-2 mt-2">
+                        <h2 class="title-crud text-primary text-center">Danh sách sự kiện</h2>
+                        <div class="table-all table-responsive" style="background-color: #fff;">
+                            <table class="table table-striped mb-0 border-bottom">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Trạng thái</th>
+                                        <th><i class="fas fa-edit"></i></th>
+                                        <th><i class="far fa-edit"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="sliderDTO : ${sliderDTOS}">
+                                        <tr>
+                                            <td th:text="${sliderDTOStat.index + 1}"></td>
+                                            <td th:text="${sliderDTO.name}"></td>
+                                            <td>
+                                                <img th:src="${sliderDTO.thumbnail}" style="width: 150px;">
+                                            </td>
+                                            <td th:text="${sliderDTO.isActive}"></td>
+                                            <td>
+                                                <form th:action="@{/admin/slider/active}" th:objects="${sliderForm}" method="post">
+                                                    <input th:value="${sliderDTO.id}" th:hidden="true" name="id" th:readonly="true" type="number">
+                                                    <input th:value="1" th:hidden="true" name="isActive" th:readonly="true" type="number">
+                                                    <button class="btn btn-primary" type="submit" th:disabled="${sliderDTO.isActive == 1}">Mở</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form th:action="@{/admin/slider/active}" th:objects="${sliderForm}" method="post">
+                                                    <input th:value="${sliderDTO.id}" th:hidden="true" name="id" th:readonly="true" type="number">
+                                                    <input th:value="0" th:hidden="true" name="isActive" th:readonly="true" type="number">
+                                                    <button class="btn btn-primary" type="submit" th:disabled="${sliderDTO.isActive != 1}">Tắt</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- content right end -->
+            </div>
+        </div>
+    </div>
+
+    <th:block th:insert="~{commonAdmin/footer}"></th:block>
+</body>
+
+</html>

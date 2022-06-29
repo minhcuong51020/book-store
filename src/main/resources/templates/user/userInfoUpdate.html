@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Cập nhật thông tin</title>
+</head>
+<body>
+<!-- Start header -->
+<div th:insert="~{common/header :: .header}"></div>
+<!-- header end -->
+
+<div class="content w-100 pt-4">
+    <div class="container bg-white">
+        <div class="row">
+            <div class="col-3 border-right" style="min-height: 300px">
+                <div th:insert="~{common/sidebar :: .navbar-user}"></div>
+            </div>
+            <div class="col-9">
+                <div class="col-12 title bg-white text-center">
+                    <h3 class="text-center text-primary pt-3">Cập nhật thông tin cá nhân</h3>
+                    <span th:if="${messageSuccess}" th:text="${messageSuccess}" class="text-success"></span>
+                    <span th:if="${messageError}" th:text="${messageError}" class="text-danger"></span>
+                    <div class="row pt-3">
+                        <div class="col-12">
+                            <form th:action="@{/user/info/update}" th:object="${userDTO}" method="post">
+                                <div class="form-group text-left">
+                                    <input th:field="${userDTO.id}" th:hidden="true" th:readonly="true" type="text" class="form-control">
+                                </div>
+                                <div class="form-group text-left">
+                                    <label for="fullName">Họ tên:</label>
+                                    <input th:field="${userDTO.fullName}" type="text" class="form-control" placeholder="Nhập họ tên"
+                                           id="fullName">
+                                </div>
+                                <div class="form-group text-left">
+                                    <label for="phone">Số điện thoại:</label>
+                                    <input th:field="${userDTO.phone}" type="text" class="form-control" placeholder="Nhập số điện thoại"
+                                           id="phone">
+                                </div>
+                                <div class="form-group text-left">
+                                    <label for="address">Địa chỉ:</label>
+                                    <input th:field="${userDTO.address}" type="text" class="form-control" placeholder="Nhập địa chỉ"
+                                           id="address">
+                                </div>
+                                <div class="form-group text-left">
+                                    <label for="email">Email:</label>
+                                    <input th:field="${userDTO.email}" type="email" class="form-control" placeholder="Nhập email"
+                                           id="email">
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  footer -->
+<div th:insert="~{common/footer :: .footer}"></div>
+<!-- end footer -->
+</body>
+</html>

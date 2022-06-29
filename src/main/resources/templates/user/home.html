@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Trang chủ</title>
+</head>
+
+<body>
+    <!-- Start header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- header end -->
+    <div class="slider pt-3">
+        <div class="container-fluid container-lg">
+            <div class="row">
+                <!-- category start -->
+                <div class="d-none d-sm-none d-md-none d-lg-block col-lg-3 pl-0">
+                    <div class="category">
+                        <span class="title-category font-weight-bolder">Danh mục sản phẩm</span>
+                        <th:block th:each="category : ${categories}">
+                            <div class="category-item">
+                                <a th:href="@{/danh-muc/{slug}(slug=${category.slug})}" class="link-item" th:text="${category.name}"></a>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+                <!-- category end -->
+
+                <!-- carousel slide start-->
+                <div class="col-md-12 col-lg-9 pr-0" id="carousel-slider">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <th:block th:each="sliderDTO : ${sliderDTOS}">
+                                <div class="carousel-item" th:classappend="${sliderDTOStat.index == 0} ? 'active' : '' ">
+                                    <img th:src="${sliderDTO.thumbnail}" class="d-block w-100" th:alt="${sliderDTO.name}">
+                                </div>
+                            </th:block>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- carousel slide end-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Content-start -->
+    <div class="content w-100">
+        <!-- sale product start -->
+        <div class="container-fluid container-lg feature-product">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    <span class="d-block">Sản phẩm giảm giá</span>
+                </div>
+            </div>
+            <div class="row pt-4 product-list">
+                <th:block th:each="bookDiscount : ${booksDiscount}">
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3 justify-content-center">
+                        <div class="position-relative" style="height: 300px">
+                            <a th:href="@{/sach/chi-tiet/{id}(id=${bookDiscount.id})}" class="link-proudct-img d-block text-center">
+                                <img th:src="${bookDiscount.thumbnail}"
+                                     class="img-thumbnail border-0"
+                                     th:alt="${bookDiscount.title}"
+                                style="width: 200px">
+                            </a>
+                            <span class="position-absolute mt-2" style="left: 0; top: 0;">
+                                <div class="badge main-label-sale ml-2"
+                                     th:text="${#numbers.formatPercent(bookDiscount.discount/100, 0, 0)}">
+                                </div>
+                            </span>
+                        </div>
+                        <div class="card-body card-product pl-0 pr-0 pl-sm-0 pl-sm-0 pl-md-0 pr-md-0 pl-lg-4 pr-lg-4">
+                            <h6 class="card-title">
+                                <a th:href="@{/sach/chi-tiet/{id}(id=${bookDiscount.id})}" class="link-product">
+                                    <span th:text="${bookDiscount.title}"></span>
+                                </a>
+                            </h6>
+                            <div style="margin-bottom: 16px;" class="d-flex justify-content-between">
+                                <span class="main-product-price"
+                                      th:if="${bookDiscount.discount > 0}" th:text="${#numbers.formatCurrency(bookDiscount.price)}">
+                                </span>
+                                <span class="main-product-price-sale"
+                                      th:text="${#numbers.formatCurrency(bookDiscount.price * (100 - bookDiscount.discount) / 100)}">
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-around">
+                                <button class="btn btn-index-edit add-to-cart" th:value="${bookDiscount.id}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <a th:href="@{/sach/chi-tiet/{id}(id=${bookDiscount.id})}" class="btn btn-index-edit">Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+            <div class="row add-product text-center">
+                <div class="col-lg-12">
+                    <a th:href="@{/sach/sach-giam-gia}" class="btn btn-index-edit">
+                        Xem Thêm <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- sale-product end -->
+
+        <!-- new product start -->
+        <div class="container-fluid container-lg new-product">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    <span class="d-block">Sản phẩm mới</span>
+                </div>
+            </div>
+
+            <div class="row pt-4 product-list">
+                <th:block th:each="bookNew : ${booksNew}">
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3 justify-content-center" >
+                        <div class="position-relative" style="height: 300px">
+                            <a th:href="@{/sach/chi-tiet/{id}(id=${bookNew.id})}" class="link-proudct-img d-block text-center">
+                                <img th:src="${bookNew.thumbnail}"
+                                     class="img-thumbnail border-0"
+                                     th:alt="${bookNew.title}"
+                                     style="width: 200px">
+                            </a>
+                        </div>
+                        <div class="card-body card-product pl-0 pr-0 pl-sm-0 pl-sm-0 pl-md-0 pr-md-0 pl-lg-4 pr-lg-4">
+                            <h6 class="card-title">
+                                <a th:href="@{/sach/chi-tiet/{id}(id=${bookNew.id})}" class="link-product">
+                                    <span th:text="${bookNew.title}"></span>
+                                </a></h6>
+                            <p class="main-product-price-sale"
+                               th:text="${#numbers.formatCurrency(bookNew.price * (100 - bookNew.discount) / 100)}"></p>
+                            <div class="d-flex justify-content-around">
+                                <button class="btn btn-index-edit add-to-cart" th:value="${bookNew.id}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <a th:href="@{/sach/chi-tiet/{id}(id=${bookNew.id})}" class="btn btn-index-edit">Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+            <div class="row add-product text-center">
+                <div class="col-lg-12">
+                    <a href="newproduct.html" class="btn btn-index-edit">
+                        Xem Thêm <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- new product end -->
+
+        <!-- product start -->
+        <div class="container-fluid container-lg new-product">
+            <div class="row">
+                <div class="col-lg-12 title">
+                    <span class="d-block">Sản phẩm đề xuất</span>
+                </div>
+            </div>
+            <div class="row pt-4 product-list">
+                <th:block th:each="bookRandom : ${booksRandom}">
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3 justify-content-center" >
+                        <div class="position-relative" style="height: 300px">
+                            <a th:href="@{/sach/chi-tiet/{id}(id=${bookRandom.id})}" class="link-proudct-img d-block text-center">
+                                <img th:src="${bookRandom.thumbnail}"
+                                     class="img-thumbnail border-0"
+                                     th:alt="${bookRandom.title}"
+                                     style="width: 200px">
+                            </a>
+                        </div>
+                        <div class="card-body card-product pl-0 pr-0 pl-sm-0 pl-sm-0 pl-md-0 pr-md-0 pl-lg-4 pr-lg-4">
+                            <h6 class="card-title">
+                                <a th:href="@{/sach/chi-tiet/{id}(id=${bookRandom.id})}" class="link-product">
+                                <span th:text="${bookRandom.title}"></span>
+                            </a></h6>
+                            <p class="main-product-price-sale"
+                               th:text="${#numbers.formatCurrency(bookRandom.price * (100 - bookRandom.discount) / 100)}"></p>
+                            <div class="d-flex justify-content-around">
+                                <button class="btn btn-index-edit add-to-cart" th:value="${bookRandom.id}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <a th:href="@{/sach/chi-tiet/{id}(id=${bookRandom.id})}" class="btn btn-index-edit">Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+            <div class="row add-product text-center">
+                <div class="col-lg-12">
+                    <a href="newproduct.html" class="btn btn-index-edit">
+                        Xem Thêm <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content-end -->
+
+    <!-- footer start -->
+    <div th:insert="~{common/footer :: .footer}"></div>
+    <script>
+        $(document).ready(function () {
+            $('.add-to-cart').click(function () {
+                let bookId = $(this).val();
+                let quantity = 1;
+                let nal = {
+                    'bookDTO': {
+                        'id': bookId
+                    },
+                    'quantity': quantity
+                }
+                $.ajax(
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        type: 'POST',
+                        url: '[[ ${#servletContext.getContextPath()} ]]/cart/addBook',
+                        data: JSON.stringify(nal),
+                        success: function (res) {
+                            if(res.id != 0) {
+                                Swal.fire(
+                                    "Thêm sách vào giỏ hàng",
+                                    "Thành công",
+                                    "success",
+                                    "Tiếp tục!",
+                                )
+                            }
+                        },
+                        error: function (error) {
+                            if(error.status == 403) {
+                                window.location.href ="[[ ${#servletContext.getContextPath()} ]]/login";
+                            }
+                            console.log(error)
+                        }
+                    }
+                )
+            })
+        })
+    </script>
+    <!-- footer end -->
+</body>
+
+</html>

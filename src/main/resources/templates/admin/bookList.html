@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{commonAdmin/library :: link}"></th:block>
+    <th:block th:insert="~{commonAdmin/library :: script}"></th:block>
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:insert="~{commonAdmin/header}"></th:block>
+
+    <div class="content-admin">
+        <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+                <th:block th:insert="~{commonAdmin/sidebar}"></th:block>
+                <!-- Content right -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+                    <div class="list-item ml-2 mr-2 mt-2">
+                        <h2 class="title-crud text-center text-primary">Danh sách sản phẩm</h2>
+                        <div class="table-all table-responsive" style="background-color: #fff;">
+                            <table class="table table-striped mb-0 border-bottom">
+                                <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Tên</th>
+                                        <th>Ảnh</th>
+                                        <th>Thể loại</th>
+                                        <th>Tác giả</th>
+                                        <th>NXB</th>
+                                        <th>Giá</th>
+                                        <th>Giảm giá</th>
+                                        <th>Trạng thái</th>
+                                        <th><i class="fas fa-cog"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="bookDTO : ${bookDTOS}">
+                                        <tr>
+                                            <td th:text="${bookDTOStat.index + 1}"></td>
+                                            <td th:text="${bookDTO.title}"></td>
+                                            <td class="text-center">
+                                                <img th:unless="${#strings.isEmpty(bookDTO.thumbnail)}"
+                                                     th:src="${bookDTO.thumbnail}" style="height: 80px;" th:alt="${bookDTO.title}" />
+                                            </td>
+                                            <td th:text="${bookDTO.categoryName}"></td>
+                                            <td th:text="${bookDTO.authorName}"></td>
+                                            <td th:text="${bookDTO.publisherName}"></td>
+                                            <td th:text="${#numbers.formatCurrency(bookDTO.price)}"></td>
+                                            <td th:text="${#numbers.formatPercent(bookDTO.discount/100,0,0)}"></td>
+                                            <td th:text="${bookDTO.isActive}"></td>
+                                            <td>
+                                                <div style="width: 70px;">
+                                                    <a th:href="@{/admin/book/update/{id}(id=${bookDTO.id})}" class="edit-table">Sửa</a>
+                                                    <a>||</a>
+                                                    <a th:href="@{/admin/book/delete/{id}(id=${bookDTO.id})}" class="delete-table">Xóa</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- content right end -->
+            </div>
+        </div>
+    </div>
+
+    <th:block th:insert="~{commonAdmin/footer}"></th:block>
+</body>
+
+</html>

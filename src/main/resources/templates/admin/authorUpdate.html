@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{commonAdmin/library :: link}"></th:block>
+    <th:block th:insert="~{commonAdmin/library :: script}"></th:block>
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:insert="~{commonAdmin/header}"></th:block>
+
+    <div class="content-admin">
+        <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+                <th:block th:insert="~{commonAdmin/sidebar}"></th:block>
+                <!-- Content right -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+                    <div class="list-item ml-2 mr-2 mt-2">
+                        <h2 class="title-crud text-center text-primary">Cập nhật tác giả</h2>
+                        <h4 class="text-success" th:if="${messageSuccess}" th:text="${messageSuccess}"></h4>
+                        <div class="table-all table-responsive p-3" style="background-color: #fff;">
+                            <form th:action="@{/admin/author/update}" th:object="${authorDTO}" method="post">
+                                <div class="form-group" th:hidden="true">
+                                    <label>Id:</label>
+                                    <input th:readonly="true" th:field="${authorDTO.id}" type="number" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="author">Tên tác giả:</label>
+                                    <input th:field="${authorDTO.name}" type="text" class="form-control" placeholder="Nhập tên tác giả"
+                                        id="author">
+                                    <p class="text-danger" th:if="${#fields.hasErrors('name')}" th:text="#{author.name.required}"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="isActive">Trạng thái</label>
+                                    <select class="form-control" id="isActive" name="isActive">
+                                        <option th:each="entry : ${status.entrySet()}"
+                                                th:value="${entry.key}"
+                                                th:text="${entry.value}"
+                                                th:selected="${entry.key == authorDTO.isActive}"/>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- content right end -->
+            </div>
+        </div>
+    </div>
+
+    <th:block th:insert="~{commonAdmin/footer}"></th:block>
+</body>
+
+</html>

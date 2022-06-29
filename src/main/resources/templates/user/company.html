@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/icon/fontawe/css/all.min.css">
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/jquery.slim.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Start header -->
+    <header class="header">
+        <div class="container header-desktop d-none d-sm-none d-md-none d-lg-block">
+            <!-- Desktop start -->
+            <div class="d-flex justify-content-between">
+                <a class="navbar-brand" href="home.html">
+                    <img src="./img/logo.png" alt="logo" class="img-logo" style="width: 200px">
+                </a>
+
+                <form class="form-inline w-25">
+                    <div class="position-relative w-100">
+                        <input class="form-control form-search w-100" type="text" placeholder="Tìm kiếm sản phẩm"
+                            aria-label="Search">
+                        <button class="btn-search btn btn-success position-absolute" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <ul class="d-flex m-0 p-0">
+                    <li class="nav-item d-inline-block">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="">Giỏ hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-inline-block">
+                        <a class="nav-link" href="checkout.html">
+                            <i class="fas fa-money-check-alt"></i>
+                            <span class="">Thanh toán</span>
+                        </a>
+                    </li>
+                    <li class="nav-item d-inline-block">
+                        <a class="nav-link" href="../login.html">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span class="">Đăng nhập</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="d-flex m-0 p-0 justify-content-lg-center">
+                <li class="nav-item d-inline">
+                    <a class="nav-link" href="home.html">
+                        Trang chủ
+                    </a>
+                </li>
+                <li class="nav-item d-inline dropdown company">
+                    <a class="nav-link d-block" style="cursor: pointer;">
+                        Nhà cung cấp
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="company.html ">NXB Kim Đồng</a>
+                        <a class="dropdown-item" href="company.html ">NXB Đà Nẵng</a>
+                        <a class="dropdown-item" href="company.html ">NXB Thanh Niên</a>
+                    </div>
+                </li>
+                <li class="nav-item d-inline">
+                    <a class="nav-link" href="transport.html">
+                        Vận chuyển
+                    </a>
+                </li>
+                <li class="nav-item d-inline">
+                    <a class="nav-link" href="#">
+                        Chính sách cửa hàng
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Desktop end -->
+
+        <!-- Mobile start -->
+        <div class="container-fluid header-mobile d-md-block d-lg-none">
+            <div class="justify-content-center d-flex">
+                <a class="navbar-brand" href="#">
+                    <img src="./img/logo.png" alt="logo" class="img-logo" style="width: 200px">
+                </a>
+            </div>
+            <nav class="navbar navbar-expand-lg">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="">
+                    <form class="form-inline">
+                        <div class="position-relative">
+                            <input class="form-control form-search" type="search" placeholder="Tìm kiếm sản phẩm"
+                                aria-label="Search">
+                            <button class="btn-search btn btn-outline-success position-absolute" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <ul class="d-flex m-0 p-0">
+                    <li class="nav-item d-inline">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-inline">
+                        <a class="nav-link" href="checkout.html">
+                            <i class="fas fa-money-check-alt"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-inline">
+                        <a class="nav-link" href="../login.html">
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="collapse navbar-collapse" id="navbar-content">
+                    <div class="dropdown-divider"></div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">Trang chủ</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Danh Mục Sản Phẩm
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="newproduct.html">Sách văn học</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="newproduct.html">Sách toán học</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="newproduct.html">Sách ngoại ngữ</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="newproduct.html">Sách dịch</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="newproduct.html">Truyện tranh</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Nhà cung cấp
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="company.html">NXB Kim Đồng</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="company.html">NXB Đà Nẵng</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="company.html">NXB Thanh Niên</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="transport.html">Vận chuyển</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Chính sách cửa hàng</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- Mobile end -->
+    </header>
+    <!-- header end -->
+
+    <div class="content w-100 company-content">
+        <div class="container-fluid container-lg pl-0 pr-0 company-content-tab">
+            <span class="company-title text-uppercase">
+                Nhà cung cấp Kim Đồng
+            </span>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#info-company">Thông tin nhà cung cấp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#product-by-company">Sản phẩm của nhà cung cấp</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane container-fluid container-lg active" id="info-company">
+                <div class="row">
+                    <div class="col-lg-12 title">
+                        <span class="d-block">Thông tin chi tiết</span>
+                    </div>
+                </div>
+                <table class="table table-borderless table-striped">
+                    <thead>
+                        <tr>
+                            <th>Trường</th>
+                            <th>Thông tin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Loại hình kinh doanh</td>
+                            <td>Nhà xuất bản</td>
+                        </tr>
+                        <tr>
+                            <td>Năm thành lập</td>
+                            <td>2005</td>
+                        </tr>
+                        <tr>
+                            <td>Trụ sở chính</td>
+                            <td>Hà nội</td>
+                        </tr>
+                        <tr>
+                            <td>Số nhân viên</td>
+                            <td>120</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- product by company start -->
+            <div class="container-fluid container-lg new-product tab-pane fade" id="product-by-company">
+                <div class="row">
+                    <div class="col-lg-12 title">
+                        <span class="d-block">Tất cả sản phẩm</span>
+                    </div>
+                </div>
+                <div class="row pt-4 product-list">
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                        <a href="bookInfo.html" class="link-proudct-img">
+                            <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                        </a>
+                        <div class="card-body card-product">
+                            <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                    <span>Sống như thế mới lên thơ</span>
+                                </a></h6>
+                            <p class="card-text">240000đ</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="product-item col-6 col-sm-6 col-md-3 col-lg-3">
+                    <a href="bookInfo.html" class="link-proudct-img">
+                        <img src="/img/songnhumodoimoinentho.jpg" class="img-thumbnail border-0" alt="">
+                    </a>
+                    <div class="card-body card-product">
+                        <h6 class="card-title"><a href="bookInfo.html" class="link-product">
+                                <span>Sống như thế mới lên thơ</span>
+                            </a></h6>
+                        <p class="card-text">240000đ</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="bookInfo.html" class="btn btn-index-edit">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row add-product text-center">
+                    <div class="col-lg-12">
+                        <ul class="pagination mb-0 justify-content-center">
+                            <li class="page-item"><a class="page-link" id="paging" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" id="paging" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" id="paging" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" id="paging" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" id="paging" href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- product by company end -->
+        </div>
+
+    </div>
+
+    <!-- footer start -->
+    <div class="footer">
+        <div class="container-lg footer-content">
+            <div class="row">
+                <!-- footer left -->
+                <div class="col-sm-12 col-md-12 col-lg-4 footer-left">
+                    <div class="brand-img">
+                        <img src="/img/logo.png" alt="" style="width: 300px;">
+                    </div>
+                    <div class="footer-desc">
+                        <p>Công ty cổ phần HMC</p>
+                        <p>Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt mua và nhận hàng
+                            trực tiếp tại văn phòng cũng như tất cả Hệ Thống Fahasa trên toàn quốc.</p>
+                    </div>
+                    <div class="footer-conn">
+                        <ul class="list-conn">
+                            <li class="item-conn d-inline">
+                                <a href="#">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="item-conn d-inline">
+                                <a href="#">
+                                    <i class="fab fa-instagram-square"></i>
+                                </a>
+                            </li>
+                            <li class="item-conn d-inline">
+                                <a href="#">
+                                    <i class="fab fa-twitter-square"></i>
+                                </a>
+                            </li>
+                            <li class="item-conn d-inline">
+                                <a href="#">
+                                    <i class="fab fa-youtube-square"></i>
+                                </a>
+                            </li>
+                            <li class="item-conn d-inline">
+                                <a href="#">
+                                    <i class="fab fa-google-play"></i>
+                                </a>
+                            </li>
+                            <li class="item-conn d-inline">
+                                <a href="">
+                                    <i class="fab fa-app-store-ios"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- footer right -->
+                <div class="col-md-12 col-lg-8 d-none d-sm-none d-md-block footer-right">
+                    <div class="row">
+                        <div class="col-4 ">
+                            <h5>Dịch vụ</h5>
+                            <div class="footer-item">
+                                <a href="#">Điều khoản mở rộng</a>
+                            </div>
+                            <div class="footer-item">
+                                <a href="#">Chính sách bảo mật</a>
+                            </div>
+                            <div class="footer-item">
+                                <a href="#">Giới thiệu về HMC</a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <h5>Hỗ trợ</h5>
+                            <div class="footer-item">
+                                <a href="#">Chính sách đổi trả</a>
+                            </div>
+                            <div class="footer-item">
+                                <a href="transport.html">Phương thức vận chuyển</a>
+                            </div>
+                            <div class="footer-item">
+                                <a href="#">Phương thức thanh toán</a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <h5>Liên hệ</h5>
+                            <div class="footer-item">
+                                PM-PX-HN
+                            </div>
+                            <div class="footer-item">
+                                0365.871.025
+                            </div>
+                            <div class="footer-item">
+                                1900.1000
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-3 d-none d-sm-none d-md-block d-lg-block">
+                        <div class="col-md-12 col-lg-12">
+                            <div>
+                                <h5>Liên kết</h5>
+                            </div>
+                            <div class="row pt-3">
+                                <div class="col-md-3 col-lg-3">
+                                    <img src="./img/vnpost.png" class="img-lk" alt="">
+                                </div>
+                                <div class="col-md-3 col-lg-3">
+                                    <img src="./img/icon_giao_hang_nhanh.png" class="img-lk" alt="">
+                                </div>
+                                <div class="col-md-3 col-lg-3">
+                                    <img src="./img/ahamove_logo.png" class="img-lk" alt="">
+                                </div>
+                                <div class="col-md-3 col-lg-3">
+                                    <img src="./img/icon_snappy.png" class="img-lk" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        //slider
+        var w = document.documentElement.clientWidth;
+        if (w < 976) {
+            var slider = document.getElementById('carousel-slider');
+            slider.classList.add('pl-0')
+        }
+
+        var resizeWeb = function () {
+            var w = document.documentElement.clientWidth;
+            var slider = document.getElementById('carousel-slider');
+            if (w < 976) {
+                slider.classList.add('pl-0')
+            } else {
+                slider.classList.remove('pl-0');
+            }
+        }
+        window.addEventListener("resize", resizeWeb);
+    </script>
+</body>
+
+</html>

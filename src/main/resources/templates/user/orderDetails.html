@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:insert="~{common/library :: link}"></th:block>
+    <th:block th:insert="~{common/library :: script}"></th:block>
+    <title>Thông tin đơn hàng</title>
+</head>
+<body>
+    <!--  header -->
+    <div th:insert="~{common/header :: .header}"></div>
+    <!-- end header -->
+    <div class="content w-100 info-checkout">
+        <div class="container-fluid container-lg info-cart-content">
+            <div class="col-12 title border-top" style="background-color: #fff;">
+                <span class="text-center">Thông tin đơn hàng</span>
+            </div>
+            <div class="row" >
+                <table class="table border m-0">
+                    <tr>
+                        <th style="width: 200px" class="border-right">Người nhận</th>
+                        <td th:text="${orderDTO.fullName}"></td>
+                    </tr>
+
+                    <tr>
+                        <th class="border-right">Số điện thoại</th>
+                        <td th:text="${orderDTO.phone}"></td>
+                    </tr>
+
+                    <tr>
+                        <th class="border-right">Địa chỉ</th>
+                        <td th:text="${orderDTO.address}"></td>
+                    </tr>
+
+                    <tr>
+                        <th class="border-right">Tiền thanh toán</th>
+                        <td th:text="${#numbers.formatCurrency(orderDTO.totalPrice)}"></td>
+                    </tr>
+
+                    <tr>
+                        <th class="border-right">Ngày đặt hàng</th>
+                        <td th:text="${#calendars.format(orderDTO.createdAt, 'dd/MMM/yyyy HH:mm')}"></td>
+                    </tr>
+
+                    <tr>
+                        <th style="width: 200px" class="border-right">Trạng thái</th>
+                        <td th:if="${orderDTO.status == 1}">Hoàn thành</td>
+                        <td th:unless="${orderDTO.status == 1}">Đang xử lý</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-12 title border-top" style="background-color: #fff;">
+                <span class="text-center">Thông tin sản phẩm</span>
+            </div>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Số lượng</th>
+                            <th>Giá tiền</th>
+                            <th>Tổng tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:each="orderDetailsDTO : ${orderDTO.orderDetailsDTOS}">
+                            <tr>
+                                <td th:text="${orderDetailsDTO.bookDTO.title}"></td>
+                                <td>
+                                    <img th:src="${orderDetailsDTO.bookDTO.thumbnail}" th:alt="${orderDetailsDTO.bookDTO.title}" style="height: 100px;">
+                                </td>
+                                <td th:text="${orderDetailsDTO.quantity}"></td>
+                                <td th:text="${#numbers.formatCurrency(orderDetailsDTO.price)}"></td>
+                                <td th:text="${#numbers.formatCurrency(orderDetailsDTO.totalPrice)}"></td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--  footer -->
+    <div th:insert="~{common/footer :: .footer}"></div>
+    <!-- end footer -->
+</body>
+</html>

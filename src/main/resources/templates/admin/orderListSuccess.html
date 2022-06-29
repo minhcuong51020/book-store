@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <th:block th:insert="~{commonAdmin/library :: link}"></th:block>
+    <th:block th:insert="~{commonAdmin/library :: script}"></th:block>
+    <title>Document</title>
+</head>
+
+<body>
+    <th:block th:insert="~{commonAdmin/header}"></th:block>
+
+    <div class="content-admin">
+        <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+                <th:block th:insert="~{commonAdmin/sidebar}"></th:block>
+                <!-- Content right -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+                    <div class="list-item ml-2 mr-2 mt-2">
+                        <h2 class="title-crud text-center text-primary">Đơn hàng hoàn thành</h2>
+                        <div class="table-all table-responsive" style="background-color: #fff;">
+                            <table class="table table-striped mb-0 border-bottom">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Người nhận</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Ngày Tạo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="order : ${orderDTOS}">
+                                        <tr>
+                                            <td th:text="${order.id}"></td>
+                                            <td th:text="${order.fullName}"></td>
+                                            <td th:text="${order.phone}"></td>
+                                            <td th:text="${order.address}"></td>
+                                            <td class="text-center">
+                                                <img th:unless="${#strings.isEmpty(order.orderDetailsDTOS[0].bookDTO.thumbnail)}"
+                                                     th:src="${order.orderDetailsDTOS[0].bookDTO.thumbnail}" style="width: 60px;"/>
+                                            </td>
+                                            <td th:text="${#numbers.formatCurrency(order.totalPrice)}"></td>
+                                            <td th:text="${order.createdAt}"></td>
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- content right end -->
+            </div>
+        </div>
+    </div>
+
+    <th:block th:insert="~{commonAdmin/footer}"></th:block>
+</body>
+
+</html>
