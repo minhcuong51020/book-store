@@ -28,7 +28,7 @@ public class HomeUserController {
     @Autowired
     private SliderService sliderService;
 
-    @GetMapping(value = {"/", "/home"})
+    @GetMapping(value = {"/"})
     public String home(ModelMap modelMap) {
         List<BookDTO> booksDiscount = bookService.findTopBookByDiscount(0, 1);
         List<BookDTO> booksRandom = bookService.findTopBookRandom(1);
