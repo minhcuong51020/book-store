@@ -58,27 +58,23 @@
 
         <ul class="nav m-0 p-0 justify-content-lg-center">
             <li class="nav-item d-inline">
-                <a class="nav-link" th:href="@{/home}">
+                <a class="nav-link" th:href="@{/}">
                     Trang chủ
                 </a>
             </li>
-            <li class="nav-item d-inline dropdown company">
-                <a class="nav-link d-block" style="cursor: pointer;">
-                    Nhà cung cấp
+            <li class="nav-item d-inline">
+                <a class="nav-link" th:href="@{/}">
+                    Nhà xuất bản
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="company.html ">NXB Kim Đồng</a>
-                    <a class="dropdown-item" href="company.html ">NXB Đà Nẵng</a>
-                    <a class="dropdown-item" href="company.html ">NXB Thanh Niên</a>
-                </div>
+            </li>
             </li>
             <li class="nav-item d-inline">
-                <a class="nav-link" href="transport.html">
+                <a class="nav-link" th:href="@{/}">
                     Vận chuyển
                 </a>
             </li>
             <li class="nav-item d-inline">
-                <a class="nav-link" href="#">
+                <a class="nav-link" th:href="@{/}">
                     Chính sách cửa hàng
                 </a>
             </li>
@@ -171,18 +167,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            Nhà cung cấp
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" th:href="@{/}">NXB Kim Đồng</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/}">NXB Đà Nẵng</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/}">NXB Thanh Niên</a>
-                            <div class="dropdown-divider"></div>
-                        </div>
+                        <a class="nav-link" th:href="@{/}">Nhà xuất bản</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/}">Vận chuyển</a>
