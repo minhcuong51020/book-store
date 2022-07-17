@@ -29,7 +29,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private BookRepository bookRepository;
+    private BooksRepository booksRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -60,7 +60,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
         //all id cart_book
         List<Integer> cartBookIds = new ArrayList<>();
         for (CartBookDTO cartBookDTO : cartBookDTOS) {
-            Book book = bookRepository.getBookByIdAndIsActive(cartBookDTO.getBookDTO().getId(), 1);
+            Book book = booksRepository.getBookByIdAndIsActive(cartBookDTO.getBookDTO().getId(), 1);
             OrderDetails orderDetails = new OrderDetails();
             double price = cartBookDTO.getBookDTO().getPrice() * (100 - cartBookDTO.getBookDTO().getDiscount()) / 100;
             double totalPrice = price * cartBookDTO.getQuantity();

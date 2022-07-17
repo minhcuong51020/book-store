@@ -3,6 +3,7 @@ package com.example.shopstore.controller;
 import com.example.shopstore.dto.BookDTO;
 import com.example.shopstore.dto.CategoryDTO;
 import com.example.shopstore.dto.SliderDTO;
+import com.example.shopstore.entity.Book;
 import com.example.shopstore.service.BookService;
 import com.example.shopstore.service.CategoryService;
 import com.example.shopstore.service.SliderService;

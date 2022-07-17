@@ -6,13 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
-@Transactional
-public interface BookRepository extends JpaRepository<Book, Integer> {
+public interface BooksRepository extends JpaRepository<Book, Integer> {
+
     public List<Book> findTop4ByDiscountGreaterThanAndIsActiveEqualsOrderByIdDesc(double discount, int isActive);
 
     public List<Book> findTop4ByIsActiveEqualsOrderByCreatedAtDesc(int isActive);
@@ -24,5 +23,4 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     public Book getBookByIdAndIsActive(int id, int isActive);
 
-    public List<Book> findAllByIsActiveEquals(int isActive);
 }

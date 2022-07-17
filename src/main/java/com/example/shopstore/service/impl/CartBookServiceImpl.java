@@ -7,7 +7,7 @@ import com.example.shopstore.dto.CartDTO;
 import com.example.shopstore.entity.Book;
 import com.example.shopstore.entity.Cart;
 import com.example.shopstore.entity.CartBook;
-import com.example.shopstore.repository.BookRepository;
+import com.example.shopstore.repository.BooksRepository;
 import com.example.shopstore.repository.CartBookRepository;
 import com.example.shopstore.repository.CartRepository;
 import com.example.shopstore.service.CartBookService;
@@ -26,7 +26,7 @@ public class CartBookServiceImpl implements CartBookService {
     private CartBookRepository cartBookRepository;
 
     @Autowired
-    private BookRepository bookRepository;
+    private BooksRepository booksRepository;
 
     @Autowired
     private CartRepository cartRepository;
@@ -36,7 +36,7 @@ public class CartBookServiceImpl implements CartBookService {
     public CartBookDTO addBookToCart(CartBookDTO cartBookDTO) {
         CartBook cartBook = new CartBook();
         Optional<Cart> optionalCart = cartRepository.findById(cartBookDTO.getCartDTO().getId());
-        Optional<Book> optionalBook = bookRepository.findById(cartBookDTO.getBookDTO().getId());
+        Optional<Book> optionalBook = booksRepository.findById(cartBookDTO.getBookDTO().getId());
         if(optionalCart.isPresent() && optionalBook.isPresent()) {
             cartBook.setCart(optionalCart.get());
             cartBook.setBook(optionalBook.get());

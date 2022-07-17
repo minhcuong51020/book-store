@@ -9,15 +9,12 @@ import com.example.shopstore.entity.Book;
 import com.example.shopstore.entity.Category;
 import com.example.shopstore.entity.Publisher;
 import com.example.shopstore.repository.AuthorRepository;
-import com.example.shopstore.repository.BookRepository;
+import com.example.shopstore.repository.BooksRepository;
 import com.example.shopstore.repository.CategoryRepository;
 import com.example.shopstore.repository.PublisherRepository;
 import com.example.shopstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +24,7 @@ import java.util.*;
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
-    private BookRepository bookRepository;
+    private BooksRepository booksRepository;
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -69,7 +66,7 @@ public class BookServiceImpl implements BookService {
         book.setPrice(bookDTO.getPrice());
         book.setDiscount(bookDTO.getDiscount());
         book.setThumbnail(thumbnail);
-        Optional<Book> optionalBook = Optional.ofNullable(bookRepository.save(book));
+        Optional<Book> optionalBook = Optional.ofNullable(booksRepository.save(book));
         if(optionalBook.isPresent()) {
             bookDTO.setId(book.getId());
             bookDTO.setIsActive(bookDTO.getIsActive());
@@ -113,7 +110,7 @@ public class BookServiceImpl implements BookService {
         } else {
             book.setThumbnail(bookDTO.getThumbnail());
         }
-        Optional<Book> optionalBook = Optional.ofNullable(bookRepository.save(book));
+        Optional<Book> optionalBook = Optional.ofNullable(booksRepository.save(book));
         if(optionalBook.isPresent()) {
             bookDTO.setThumbnail(book.getThumbnail());
             bookDTO.setUpdatedAt(book.getUpdatedAt());
@@ -129,7 +126,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDTO getBookById(int id) {
-        Optional<Book> optional = bookRepository.findById(id);
+        Optional<Book> optional = booksRepository.findById(id);
         if (!optional.isPresent()) {
             return null;
         }
@@ -140,7 +137,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> getAllBook() {
-        List<Book> books = bookRepository.findAll();
+        List<Book> books = booksRepository.findAll();
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : books) {
             BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);
@@ -151,23 +148,25 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> getAllBookByIsActive(int isActive) {
-        List<Book> books = bookRepository.findAllByIsActiveEquals(isActive);
+        List<Book> books = booksRepository.findAll();
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : books) {
-            BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);
-            bookDTOS.add(bookDTO);
+            if(book.getIsActive() == isActive) {
+                BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);
+                bookDTOS.add(bookDTO);
+            }
         }
         return bookDTOS;
     }
 
     @Override
     public boolean existBookById(int id) {
-        return bookRepository.existsById(id);
+        return booksRepository.existsById(id);
     }
 
     @Override
     public List<BookDTO> findTopBookByDiscount(double discount, int isActive) {
-        List<Book> books = bookRepository.findTop4ByDiscountGreaterThanAndIsActiveEqualsOrderByIdDesc(discount, isActive);
+        List<Book> books = booksRepository.findTop4ByDiscountGreaterThanAndIsActiveEqualsOrderByIdDesc(discount, isActive);
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : books) {
             BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);
@@ -178,7 +177,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> findAllByDiscountGreaterThan(double discount) {
-        List<Book> books = bookRepository.findAllByDiscountGreaterThanOrderByIdDesc(discount);
+        List<Book> books = booksRepository.findAllByDiscountGreaterThanOrderByIdDesc(discount);
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : books) {
             BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);
@@ -189,8 +188,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> findTopBookRandom(int isActive) {
-        bookRepository.findAllByIsActiveEquals(isActive);
-        List<Book> books = bookRepository.findAllByIsActiveEquals(isActive);
+        List<Book> books = booksRepository.findAll();
         int max = books.size() - 1;
         int min = 1;
         Set<Integer>set = new HashSet<>();
@@ -214,8 +212,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> findTopBookNew(int isActive) {
-        List<Book> books = bookRepository.findTop4ByIsActiveEqualsOrderByCreatedAtDesc(isActive);
-        System.out.println(books.size());
+        List<Book> books = booksRepository.findTop4ByIsActiveEqualsOrderByCreatedAtDesc(isActive);
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : books) {
             BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);
@@ -227,14 +224,14 @@ public class BookServiceImpl implements BookService {
     @Override
     public Page<BookDTO> findAllBookByCategoryAndIsActive(String slugCategory, int isActive, int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-        Page<Book> page = bookRepository.findAllByCategorySlugAndIsActive(slugCategory, isActive, pageable);
+        Page<Book> page = booksRepository.findAllByCategorySlugAndIsActive(slugCategory, isActive, pageable);
         Page<BookDTO> pageDTO = page.map(book-> ConvertBookToBookDTO.convertBookToBookDTO(book));
         return pageDTO;
     }
 
     @Override
     public BookDTO getBookByIdAndIsActive(int id, int isActive) {
-        Optional<Book> book = Optional.ofNullable(bookRepository.getBookByIdAndIsActive(id, isActive));
+        Optional<Book> book = Optional.ofNullable(booksRepository.getBookByIdAndIsActive(id, isActive));
         if(!book.isPresent()) {
             return null;
         }
