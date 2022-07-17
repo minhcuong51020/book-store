@@ -14,9 +14,11 @@ public class AuthorValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+
         AuthorDTO authorDTO = (AuthorDTO) target;
         if(authorDTO.getName() == null || authorDTO.getName().trim().length() == 0) {
             errors.rejectValue("name", "author.name.required");
         }
+
     }
 }

@@ -19,7 +19,6 @@ import java.util.Optional;
 
 @Controller
 public class AuthorController {
-
     @Autowired
     private AuthorService authorService;
 

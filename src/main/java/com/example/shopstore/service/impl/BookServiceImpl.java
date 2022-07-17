@@ -26,7 +26,6 @@ import java.util.*;
 
 @Service
 public class BookServiceImpl implements BookService {
-
     @Autowired
     private BookRepository bookRepository;
 
@@ -152,7 +151,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> getAllBookByIsActive(int isActive) {
-        List<Book> books = bookRepository.getAllByIsActiveOrderByIdDesc(isActive);
+        List<Book> books = bookRepository.findAllByIsActiveEquals(isActive);
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : books) {
             BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);
@@ -190,7 +189,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> findTopBookRandom(int isActive) {
-        List<Book> books = bookRepository.getAllByIsActiveOrderByIdDesc(isActive);
+        bookRepository.findAllByIsActiveEquals(isActive);
+        List<Book> books = bookRepository.findAllByIsActiveEquals(isActive);
         int max = books.size() - 1;
         int min = 1;
         Set<Integer>set = new HashSet<>();
@@ -214,7 +214,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDTO> findTopBookNew(int isActive) {
-        List<Book> books = bookRepository.findTop4ByIsActiveOrderByIdDesc(isActive);
+        List<Book> books = bookRepository.findTop4ByIsActiveEqualsOrderByCreatedAtDesc(isActive);
+        System.out.println(books.size());
         List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : books) {
             BookDTO bookDTO = ConvertBookToBookDTO.convertBookToBookDTO(book);

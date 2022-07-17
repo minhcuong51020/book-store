@@ -11,7 +11,6 @@ import java.util.List;
 
 @ControllerAdvice
 public class PublisherAdvise {
-
     @Autowired
     private PublisherService publisherService;
 

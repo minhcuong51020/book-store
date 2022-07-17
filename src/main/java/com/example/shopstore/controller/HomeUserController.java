@@ -13,12 +13,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class HomeUserController {
-
     @Autowired
     private BookService bookService;
 
@@ -28,7 +28,7 @@ public class HomeUserController {
     @Autowired
     private SliderService sliderService;
 
-    @GetMapping(value = {"/"})
+    @GetMapping(value = {"/oke"})
     public String home(ModelMap modelMap) {
         List<BookDTO> booksDiscount = bookService.findTopBookByDiscount(0, 1);
         List<BookDTO> booksRandom = bookService.findTopBookRandom(1);

@@ -5,7 +5,6 @@ import com.example.shopstore.dto.CartBookDTO;
 import java.util.List;
 
 public interface CartBookService {
-
     public CartBookDTO addBookToCart(CartBookDTO cartBookDTO);
 
     public CartBookDTO updateCartBook(CartBookDTO cartBookDTO);

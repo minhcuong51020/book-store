@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @Service
 public class PublisherServiceImpl implements PublisherService {
-
     @Autowired
     private PublisherRepository publisherRepository;
 

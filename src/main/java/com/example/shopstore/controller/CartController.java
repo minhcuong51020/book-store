@@ -21,7 +21,6 @@ import java.util.Optional;
 
 @Controller
 public class CartController {
-
     @Autowired
     private CartService cartService;
 

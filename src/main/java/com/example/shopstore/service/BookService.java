@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface BookService {
-
     public BookDTO addBook(BookDTO bookDTO);
     public BookDTO updateBook(BookDTO bookDTO);
     public void deleteBook(int id);

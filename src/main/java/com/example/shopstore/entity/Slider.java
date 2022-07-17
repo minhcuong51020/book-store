@@ -14,7 +14,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Slider {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -10,7 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CartBookDTO {
-
     private int id;
     private int quantity;
     private BookDTO bookDTO;

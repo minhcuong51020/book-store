@@ -5,7 +5,6 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class SlugCommon {
-
     public static String convertToSlug(String str) {
         str = Normalizer.normalize(str, Normalizer.Form.NFD).toLowerCase(Locale.ROOT).trim();
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");

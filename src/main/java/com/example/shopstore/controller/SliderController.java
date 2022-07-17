@@ -14,7 +14,6 @@ import java.util.Optional;
 
 @Controller
 public class SliderController {
-
     @Autowired
     private SliderService sliderService;
 

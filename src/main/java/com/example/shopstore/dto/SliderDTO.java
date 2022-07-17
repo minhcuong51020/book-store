@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @NoArgsConstructor
 public class SliderDTO {
-
     private int id;
     private String name;
     private String thumbnail;

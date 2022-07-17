@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface OrderRepository extends JpaRepository<Orders, Integer> {
-
     public List<Orders> findAllByUserIdAndStatusOrderByIdDesc(int id, int status);
 
     public Orders getOrdersByIdAndUserId(int id, int userId);

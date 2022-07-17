@@ -7,6 +7,7 @@ import org.springframework.validation.Validator;
 
 @Component
 public class RegisterValidator implements Validator {
+
     @Override
     public boolean supports(Class<?> clazz) {
         return false;

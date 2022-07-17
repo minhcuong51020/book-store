@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @ControllerAdvice
 public class ControllerAdvise {
-
     @ModelAttribute
     public void sessionUser(ModelMap modelMap, HttpSession session) {
         UserDTO userDTO = (UserDTO) session.getAttribute("currentUser");

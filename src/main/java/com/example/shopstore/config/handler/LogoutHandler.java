@@ -10,7 +10,6 @@ import java.io.IOException;
 
 @Component("logoutHandler")
 public class LogoutHandler implements org.springframework.security.web.authentication.logout.LogoutSuccessHandler {
-
     @Override
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         request.getSession().removeAttribute("currentUser");

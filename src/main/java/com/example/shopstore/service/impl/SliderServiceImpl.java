@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Service
 public class SliderServiceImpl implements SliderService {
-
     @Autowired
     private SliderRepository sliderRepository;
 
@@ -75,7 +74,8 @@ public class SliderServiceImpl implements SliderService {
 
     @Override
     public List<SliderDTO> getAllSliderByIsActive(int isActive) {
-        List<Slider> sliders = sliderRepository.findSliderByIsActive(isActive);
+        List<Slider> sliders = sliderRepository.findByIsActive(isActive);
+        System.out.println(sliders.size() + "slider");
         List<SliderDTO> sliderDTOS = new ArrayList<>();
         for (Slider slider : sliders) {
             SliderDTO sliderDTO = new SliderDTO();

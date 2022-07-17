@@ -23,5 +23,4 @@ public class Author implements Serializable {
 
     @Column(name = "is_active")
     private int isActive = 1;
-
 }

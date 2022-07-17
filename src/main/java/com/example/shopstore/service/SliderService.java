@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface SliderService {
-
     public SliderDTO addSlider(SliderDTO sliderDTO);
 
     public List<SliderDTO> getAllSlider();

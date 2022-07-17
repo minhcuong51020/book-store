@@ -13,7 +13,6 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookDTO {
-
     private int id;
 
     private String title;

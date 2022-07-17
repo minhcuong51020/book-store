@@ -22,7 +22,6 @@ import java.util.Optional;
 @Service
 @Transactional
 public class CartBookServiceImpl implements CartBookService {
-
     @Autowired
     private CartBookRepository cartBookRepository;
 

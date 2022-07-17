@@ -5,7 +5,6 @@ import com.example.shopstore.dto.AuthorDTO;
 import java.util.List;
 
 public interface AuthorService {
-
     public AuthorDTO addAuthor(AuthorDTO authorDTO);
     public AuthorDTO updateAuthor(AuthorDTO authorDTO);
     public void deleteAuthor(int id);

@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Controller
 public class PublisherController {
-
     @Autowired
     private PublisherService publisherService;
 

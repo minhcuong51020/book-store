@@ -12,7 +12,6 @@ import java.util.List;
 
 @ControllerAdvice
 public class AuthorAdvise {
-
     @Autowired
     private AuthorService authorService;
 

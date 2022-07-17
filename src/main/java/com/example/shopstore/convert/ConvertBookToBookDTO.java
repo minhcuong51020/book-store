@@ -4,7 +4,6 @@ import com.example.shopstore.dto.BookDTO;
 import com.example.shopstore.entity.Book;
 
 public class ConvertBookToBookDTO {
-
     public static BookDTO convertBookToBookDTO(Book book) {
         BookDTO bookDTO = new BookDTO(
                 book.getId(), book.getTitle(), book.getIsbn(), book.getPrice(), book.getDiscount(),

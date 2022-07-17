@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-
     public List<Category> getAllByIsActiveIs(int isActive);
 
     public Category getCategoryBySlugAndIsActive(String slug, int isActive);

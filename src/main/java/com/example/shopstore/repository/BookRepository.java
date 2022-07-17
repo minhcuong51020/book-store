@@ -1,7 +1,6 @@
 package com.example.shopstore.repository;
 
 import com.example.shopstore.entity.Book;
-import com.example.shopstore.entity.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,12 +13,9 @@ import java.util.List;
 @Repository
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
-
-    public List<Book> getAllByIsActiveOrderByIdDesc(int isActive);
-
     public List<Book> findTop4ByDiscountGreaterThanAndIsActiveEqualsOrderByIdDesc(double discount, int isActive);
 
-    public List<Book> findTop4ByIsActiveOrderByIdDesc(int isActive);
+    public List<Book> findTop4ByIsActiveEqualsOrderByCreatedAtDesc(int isActive);
 
     public List<Book> findAllByDiscountGreaterThanOrderByIdDesc(double discount);
 
@@ -28,4 +24,5 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     public Book getBookByIdAndIsActive(int id, int isActive);
 
+    public List<Book> findAllByIsActiveEquals(int isActive);
 }

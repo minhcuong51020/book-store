@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface CategoryService {
-
     public CategoryDTO addCategory(CategoryDTO categoryDTO);
 
     public CategoryDTO updateCategory(CategoryDTO categoryDTO);

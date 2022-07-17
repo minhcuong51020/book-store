@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CartBookRepository extends JpaRepository<CartBook, Integer> {
-
     public List<CartBook> getAllByCart_Id(int cartId);
 
     public boolean existsByCart_IdAndBook_Id(int cartId, int bookId);

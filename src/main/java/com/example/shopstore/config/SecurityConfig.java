@@ -31,10 +31,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private UserDetailsService userDetailsService;
 
     @Autowired
     @Qualifier("loginSuccessHandler")

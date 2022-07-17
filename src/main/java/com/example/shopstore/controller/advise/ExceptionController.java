@@ -7,7 +7,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
 public class ExceptionController {
-
     @ExceptionHandler(value = {NoHandlerFoundException.class})
     public String notFoundExceptionHandler(Exception ex) {
         return "404";

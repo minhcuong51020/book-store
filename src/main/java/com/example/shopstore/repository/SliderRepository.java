@@ -8,11 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SliderRepository extends JpaRepository<Slider, Integer> {
-
     @Modifying
     @Query(value = "update Slider set is_active=?1 where id=?2", nativeQuery = true)
     public void setActiveSlider(int isActive, int id);
-
-    public List<Slider> findSliderByIsActive(int isActive);
+    public List<Slider> findByIsActive(int isActive);
 
 }

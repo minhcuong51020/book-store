@@ -7,7 +7,6 @@ import java.util.Map;
 
 @Component
 public final class StatusCommon {
-
     private Map<Integer, String> status;
     private final String isActiveStr = "Hoạt động";
     private final String inActiveStr = "Dừng hoạt động";

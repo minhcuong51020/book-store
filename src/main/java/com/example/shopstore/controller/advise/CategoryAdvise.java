@@ -11,7 +11,6 @@ import java.util.List;
 
 @ControllerAdvice
 public class CategoryAdvise {
-
     @Autowired
     private CategoryService categoryService;
 

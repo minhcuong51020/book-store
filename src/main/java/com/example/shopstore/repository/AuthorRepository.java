@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 @Transactional
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
-
     public List<Author> getAllByIsActive(int isActive);
 
 }

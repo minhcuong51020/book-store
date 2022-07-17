@@ -12,7 +12,6 @@ public class AjaxAwareAuthenticationEntryPoint extends LoginUrlAuthenticationEnt
     public AjaxAwareAuthenticationEntryPoint(String loginFormUrl) {
         super(loginFormUrl);
     }
-
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         String ajaxHeader = request.getHeader("X-Requested-With");

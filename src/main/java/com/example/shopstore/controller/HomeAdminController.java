@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeAdminController {
-
     @GetMapping("/admin")
     public String homeAdminView() {
         return "admin/home";
